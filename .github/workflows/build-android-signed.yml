@@ -59,7 +59,7 @@ jobs:
       
     - name: Generate Keystore
       run: |
-        keytool -genkeypair -v -storetype PKCS12 -keystore android/app/release.keystore -alias dongetive-key -keyalg RSA -keysize 2048 -validity 10000 -storepass dongetive123 -keypass dongetive123 -dname "CN=Dongetive, OU=Development, O=Dongetive, L=City, S=State, C=US"
+        keytool -genkeypair -v -storetype PKCS12 -keystore android/release.keystore -alias dongetive-key -keyalg RSA -keysize 2048 -validity 10000 -storepass dongetive123 -keypass dongetive123 -dname "CN=Dongetive, OU=Development, O=Dongetive, L=City, S=State, C=US"
       
     - name: Make Gradlew executable
       run: chmod +x android/gradlew
@@ -67,7 +67,7 @@ jobs:
     - name: Build Signed APK
       run: |
         cd android
-        ./gradlew assembleRelease -PMYAPP_UPLOAD_STORE_FILE=app/release.keystore -PMYAPP_UPLOAD_KEY_ALIAS=dongetive-key -PMYAPP_UPLOAD_STORE_PASSWORD=dongetive123 -PMYAPP_UPLOAD_KEY_PASSWORD=dongetive123
+        ./gradlew assembleRelease -PMYAPP_UPLOAD_STORE_FILE=release.keystore -PMYAPP_UPLOAD_KEY_ALIAS=dongetive-key -PMYAPP_UPLOAD_STORE_PASSWORD=dongetive123 -PMYAPP_UPLOAD_KEY_PASSWORD=dongetive123
       env:
         ANDROID_HOME: ${{ env.ANDROID_SDK_ROOT }}
         
@@ -82,7 +82,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: release-keystore
-        path: android/app/release.keystore
+        path: android/release.keystore
         retention-days: 30
         
     - name: Upload build info
