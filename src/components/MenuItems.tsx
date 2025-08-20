@@ -32,7 +32,7 @@ const MenuItem: React.FC<{
         <View style={styles.row}>
           <Image source={icon} style={styles.leadingIcon} />
           <View style={{ width: Dimens.spacingL }} />
-          <View style={{ flex: 1 }}>
+          <View style={styles.textContainer}>
             <Text style={TextStyles.bodyMedium}>{title}</Text>
           </View>
           {trailingArrow ? <Image source={Icons.arrowRight} style={styles.trailingIcon} /> : null}
@@ -65,6 +65,9 @@ const styles = StyleSheet.create({
   trailingIcon: {
     width: Dimens.iconSizeS,
     height: Dimens.iconSizeS,
+  },
+  textContainer: {
+    flex: 1,
   },
 });
 

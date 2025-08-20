@@ -18,9 +18,9 @@ export const Header: React.FC<HeaderProps> = React.memo(({ title = 'Profile', on
       <Pressable onPress={onSearchPress} style={styles.searchButton} android_ripple={{ color: Colors.overlayLight + '4D' }}>
         <Image source={Icons.magnifier} style={styles.searchIcon} />
       </Pressable>
-          </View>
-    );
-  });
+    </View>
+  );
+});
 
 const styles = StyleSheet.create({
   container: {

@@ -20,15 +20,7 @@ export const GaugeChart: React.FC<Props> = React.memo(({ defiPercentage, ethereu
   const centerX = Dimens.chartWidth / 2;
   const centerY = Dimens.chartHeight / 2;
 
-  // Calculate arc paths
-  const defiStartAngle = 180;
-  const defiEndAngle = defiStartAngle + defiAngle;
-  const ethStartAngle = defiEndAngle + gapAngle;
-  const ethEndAngle = ethStartAngle + ethAngle;
 
-  const defiPath = describeArc(centerX, centerY, radius, defiStartAngle, defiEndAngle);
-  const ethPath = describeArc(centerX, centerY, radius, ethStartAngle, ethEndAngle);
-  const bgPath = describeArc(centerX, centerY, radius - Dimens.chartBackgroundOffset, 180, 360);
 
   return (
     <View style={styles.container}>
@@ -109,24 +101,7 @@ const LegendItem: React.FC<{ percentage: number; label: string; color: string }>
   );
 });
 
-// Helper function to describe arc path
-const describeArc = (x: number, y: number, radius: number, startAngle: number, endAngle: number) => {
-  const start = polarToCartesian(x, y, radius, endAngle);
-  const end = polarToCartesian(x, y, radius, startAngle);
-  const largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
-  return [
-    "M", start.x, start.y,
-    "A", radius, radius, 0, largeArcFlag, 0, end.x, end.y
-  ].join(" ");
-};
 
-const polarToCartesian = (centerX: number, centerY: number, radius: number, angleInDegrees: number) => {
-  const angleInRadians = (angleInDegrees - 90) * Math.PI / 180.0;
-  return {
-    x: centerX + (radius * Math.cos(angleInRadians)),
-    y: centerY + (radius * Math.sin(angleInRadians))
-  };
-};
 
 const styles = StyleSheet.create({
   container: {

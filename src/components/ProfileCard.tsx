@@ -37,7 +37,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = React.memo(({ name, email
       </View>
     </View>
   );
-};
+});
 
 const AVATAR_DIAMETER = Dimens.avatarRadius * 2;
 
