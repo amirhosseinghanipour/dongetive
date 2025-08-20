@@ -54,6 +54,9 @@ jobs:
     - name: Install dependencies
       run: npm ci
       
+    - name: Run linting
+      run: npm run lint
+      
     - name: Make Gradlew executable
       run: chmod +x android/gradlew
       

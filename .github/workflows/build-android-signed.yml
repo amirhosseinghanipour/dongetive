@@ -54,6 +54,9 @@ jobs:
     - name: Install dependencies
       run: npm ci
       
+    - name: Run linting
+      run: npm run lint
+      
     - name: Generate Keystore
       run: |
         keytool -genkeypair -v -storetype PKCS12 -keystore android/app/release.keystore -alias dongetive-key -keyalg RSA -keysize 2048 -validity 10000 -storepass dongetive123 -keypass dongetive123 -dname "CN=Dongetive, OU=Development, O=Dongetive, L=City, S=State, C=US"
